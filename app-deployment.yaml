@@ -53,6 +53,6 @@ spec:
     app: springboot-k8s-mysql
   ports:
     - protocol: "TCP"
-      port: 8444 # The port that the service is running on in the cluster
+      port: 8443 # The port that the service is running on in the cluster
       targetPort: 8443 # The port exposed by the service
   type: NodePort # type of the service.
