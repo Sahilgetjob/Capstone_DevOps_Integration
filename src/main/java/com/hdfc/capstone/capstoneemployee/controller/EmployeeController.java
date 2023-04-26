@@ -25,7 +25,7 @@ public class EmployeeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 	
-	
+	//A single endpoint for accessing employee details using GET Http method
 	@GetMapping("/{employeeId}")
 	public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable int employeeId) throws Exception {
 		logger.info("Getting employee details for employee id {}", employeeId );

@@ -10,7 +10,8 @@ public class EmployeeMapper {
 	private EmployeeMapper(){
 		super();
 	}
-
+	
+	//Mapping Employee to EmployeeDto using EmployeeMapper
 	public static EmployeeDto toDto(Employee employee) throws Exception {
 		EmployeeDto employeeDto = new EmployeeDto();
 		

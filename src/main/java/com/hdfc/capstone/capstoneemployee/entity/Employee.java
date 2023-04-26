@@ -28,7 +28,7 @@ public class Employee {
 	
 	
 	
-
+	//Getters and Setters
 	public int getEmployeeId() {
 		return employeeId;
 	}

@@ -1,5 +1,6 @@
 package com.hdfc.capstone.capstoneemployee.exceptionhandler;
 
+//Invalid Employee Id exception
 public class InvalidEmployeeIDException extends RuntimeException{
 
 	/**
