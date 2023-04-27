@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: capstone-jenkins-deployment
+  name: capstone-k8s-pipeline-deploy
 spec:
   selector:
     matchLabels:
@@ -13,8 +13,8 @@ spec:
         app: springboot-k8s-mysql
     spec:
       containers:
-        - name: capstone-jenkins-k8s
-          image: sahilv2/capstone-k8s-repo:latest
+        - name: capstone-k8s-pipeline
+          image: sahilv2/capstone-k8s-pipeline:latest
           ports:
             - containerPort: 8443
           env:   # Setting Enviornmental Variables
@@ -47,12 +47,12 @@ spec:
 apiVersion: v1 # Kubernetes API version
 kind: Service # Kubernetes resource kind we are creating
 metadata: # Metadata of the resource kind we are creating
-  name: capstone-jenkins-svc
+  name: capstone-k8s-pipeline-svc
 spec:
   selector:
     app: springboot-k8s-mysql
   ports:
     - protocol: "TCP"
-      port: 8443 # The port that the service is running on in the cluster
+      port: 8444 # The port that the service is running on in the cluster
       targetPort: 8443 # The port exposed by the service
   type: NodePort # type of the service.
