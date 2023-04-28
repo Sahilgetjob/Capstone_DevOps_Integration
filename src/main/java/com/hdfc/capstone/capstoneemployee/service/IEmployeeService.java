@@ -4,6 +4,6 @@ import com.hdfc.capstone.capstoneemployee.entity.Employee;
 
 public interface IEmployeeService {
 
-	Employee getEmployeeById(int employeeId);
+	Employee findWithEmployeeId(int employeeId);
 
 }
