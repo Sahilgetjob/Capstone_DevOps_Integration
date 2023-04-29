@@ -1,13 +1,5 @@
 package com.hdfc.capstone.capstoneemployee.controller;
 
-import java.security.InvalidKeyException;
-import java.security.NoSuchAlgorithmException;
-import java.security.NoSuchProviderException;
-
-import javax.crypto.BadPaddingException;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.NoSuchPaddingException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +27,7 @@ public class EmployeeController {
 	
 	//A single endpoint for accessing employee details using GET Http method
 	@GetMapping("/{employeeId}")
-	public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable int employeeId) throws NoSuchAlgorithmException, NoSuchProviderException, 
-																						NoSuchPaddingException, IllegalBlockSizeException,
-																						BadPaddingException, InvalidKeyException  {
+	public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable int employeeId) throws Exception  {
 		logger.info("Getting the employee details for employee id {}", employeeId );
 		Employee employee = employeeService.findWithEmployeeId(employeeId);
 		if(employee == null) {
