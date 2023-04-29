@@ -38,7 +38,7 @@ public class EmployeeController {
 	public ResponseEntity<EmployeeDto> getEmployeeById(@PathVariable int employeeId) throws NoSuchAlgorithmException, NoSuchProviderException, 
 																						NoSuchPaddingException, IllegalBlockSizeException,
 																						BadPaddingException, InvalidKeyException  {
-		logger.info("Fetching employee details for employee id {}", employeeId );
+		logger.info("Getting the employee details for employee id {}", employeeId );
 		Employee employee = employeeService.findWithEmployeeId(employeeId);
 		if(employee == null) {
 			String errorMessage = "Employee details not found for employee id "+ employeeId;
