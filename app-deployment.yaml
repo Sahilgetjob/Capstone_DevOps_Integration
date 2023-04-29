@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
         - name: capstone-k8s-pipeline
-          image: sahilv2/capstone-k8s-pipeline:latest
+          image: sahilv2/capstone-k8s-pipeline:${version}
           ports:
             - containerPort: 8443
-          imagePullPolicy: Always
+          imagePullPolicy: ifNotPresent
           env:   # Setting Enviornmental Variables
             - name: DB_HOST   # Setting Database host address from configMap
               valueFrom :
