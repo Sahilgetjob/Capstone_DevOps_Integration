@@ -17,7 +17,7 @@ spec:
           image: sahilv2/capstone-k8s-pipeline:${version}
           ports:
             - containerPort: 8443
-          imagePullPolicy: ifNotPresent
+          imagePullPolicy: IfNotPresent
           env:   # Setting Enviornmental Variables
             - name: DB_HOST   # Setting Database host address from configMap
               valueFrom :
