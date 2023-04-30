@@ -19,7 +19,7 @@ import com.hdfc.capstone.capstoneemployee.service.EmployeeService;
 
 //Employee Service Test using Mockito
 @SpringBootTest
-public class EmployeeServiceTest {
+class EmployeeServiceTest {
 	
 	@Mock
 	private EmployeeRepository employeeRepository;
