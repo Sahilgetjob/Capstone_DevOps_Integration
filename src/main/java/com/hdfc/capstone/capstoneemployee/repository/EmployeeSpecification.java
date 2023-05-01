@@ -4,6 +4,7 @@ import org.springframework.data.jpa.domain.Specification;
 
 import com.hdfc.capstone.capstoneemployee.entity.Employee;
 
+//for creating dynamic queries
 public interface EmployeeSpecification {
     
 	public static Specification<Employee> withEmployeeId(int employeeId){

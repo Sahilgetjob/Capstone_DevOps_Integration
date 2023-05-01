@@ -1,3 +1,4 @@
+#Config Map for storing non-confidential configuration data
 apiVersion : v1
 kind : ConfigMap
 metadata:
