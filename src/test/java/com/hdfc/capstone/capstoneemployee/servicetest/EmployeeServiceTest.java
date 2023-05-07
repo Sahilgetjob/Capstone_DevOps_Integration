@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -27,9 +28,10 @@ class EmployeeServiceTest {
 	@InjectMocks
 	private EmployeeService employeeService;
 
-	//Employee Service Test using Mockito
 	@Test
 	void EmployeeServiceFindwithEmployeeIdTest() throws Exception {
+
+		// Creating mock Employee object
 		Employee employee = new Employee();
 		int employeeId = 2;
 		employee.setEmployeeId(employeeId);
@@ -37,14 +39,40 @@ class EmployeeServiceTest {
 		employee.setDateOfBirth(LocalDate.of(1986, 11, 12));
 		
 		
-		
+		// Setting up the mock behavior for the findOne method of the mock repository
 		when(employeeRepository.findOne(ArgumentMatchers.<Specification<Employee>>any()))
 			.thenReturn(Optional.of (employee));
 		
-		Employee employeeExpected = employeeService.findWithEmployeeId(employeeId);
-		assertEquals(2, employeeExpected.getEmployeeId());
-		assertEquals("Mark Hamill", employeeExpected.getEmployeeName());
-		assertEquals(LocalDate.of(1986, 11, 12), employeeExpected.getDateOfBirth());
+		// Calling the findWithEmployeeId method of the service class
+		Employee SearchResult = employeeService.findWithEmployeeId(employeeId);
+
+		//Asserting the results
+		assertEquals(2, SearchResult.getEmployeeId());
+		assertEquals("Mark Hamill", SearchResult.getEmployeeName());
+		assertEquals(LocalDate.of(1986, 11, 12), SearchResult.getDateOfBirth());
+	}
+
+	
+	@Autowired
+	private EmployeeService employeeService1;
+	
+	@Test
+	void EmployeeServiceFindWithEmployeeIdTestwithData() throws Exception {
+		
+		//Creating Employee object
+		Employee employee = new Employee();
+		employee.setEmployeeId(1);
+		employee.setEmployeeName("John Doe");
+		employee.setDateOfBirth(LocalDate.of(1990, 01, 01));
+		
+		// Calling the findWithEmployeeId method of the service class
+		Employee result = employeeService1.findWithEmployeeId(1);
+		
+		//Asserting the results
+		assertEquals(employee.getEmployeeId(), result.getEmployeeId());
+		assertEquals(employee.getEmployeeName(), result.getEmployeeName());
+		assertEquals(employee.getDateOfBirth(), result.getDateOfBirth());
+		
 	}
 	
 }
