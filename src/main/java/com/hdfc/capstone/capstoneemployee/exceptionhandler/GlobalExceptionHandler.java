@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
-//Global Exception Handler
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -18,22 +18,23 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(InvalidEmployeeIDException.class)
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public ErrorResponse handleInvalidEmployeeIDException(InvalidEmployeeIDException ex) {
-		return new ErrorResponse("404", ex.getMessage());
+		return new ErrorResponse(HttpStatus.NOT_FOUND.toString(), ex.getMessage());
 	}
 	
-	
+	//For handling Input mismactch exception
 	@ExceptionHandler(MethodArgumentTypeMismatchException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
 	public ErrorResponse handleMethodArgumentMismatchException(MethodArgumentTypeMismatchException ex) {
 		String errorMessage = ex.getErrorCode() +", "+ ex.getMessage();
 		logger.warn(errorMessage);
-		return new ErrorResponse(ex.getErrorCode(), ex.getMessage() );
+		return new ErrorResponse(HttpStatus.BAD_REQUEST.toString(), ex.getMessage() );
 	}
 	
+	//For handling any other internal exceptions
 	@ExceptionHandler(Exception.class)
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	public ErrorResponse handleGlobalExceptions(Exception ex) {
 		logger.warn("Internal Server Error: {}", ex.getMessage());
-		return new ErrorResponse("500", "Internal Server Error");
+		return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.toString(), ex.getMessage());
 	}
 }
